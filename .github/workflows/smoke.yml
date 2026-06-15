@@ -18,3 +18,4 @@ jobs:
       - run: test -f codex-maintenance/MAINTAINER_BRIEF.md
       - run: test -f codex-maintenance/CODEX_TASKS.md
       - run: test -f codex-maintenance/codex-tasks.json
+      - run: test -f codex-maintenance/CODEX_REVIEW.md
