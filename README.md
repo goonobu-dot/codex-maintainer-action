@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: goonobu-dot/codex-maintainer-action@v0.1.1
+      - uses: goonobu-dot/codex-maintainer-action@v0.2.0
         with:
           output-dir: codex-maintenance
 ```
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: goonobu-dot/codex-maintainer-action@v0.1.1
+      - uses: goonobu-dot/codex-maintainer-action@v0.2.0
         with:
           comment-pr: "true"
           output-dir: codex-maintenance

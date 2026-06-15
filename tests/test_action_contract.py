@@ -43,7 +43,7 @@ def test_action_runs_codex_maintainer_kit_commands() -> None:
 def test_readme_documents_public_usage() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
-    assert "goonobu-dot/codex-maintainer-action@v0.1.1" in readme
+    assert "goonobu-dot/codex-maintainer-action@v0.2.0" in readme
     assert "OSS_MAINTENANCE_AUDIT.md" in readme
     assert "MAINTAINER_BRIEF.md" in readme
     assert "CODEX_TASKS.md" in readme
@@ -56,7 +56,7 @@ def test_readme_documents_public_usage() -> None:
 def test_example_workflow_uses_action() -> None:
     workflow = (ROOT / "examples" / "workflow.yml").read_text(encoding="utf-8")
 
-    assert "uses: goonobu-dot/codex-maintainer-action@v0.1.1" in workflow
+    assert "uses: goonobu-dot/codex-maintainer-action@v0.2.0" in workflow
     assert "output-dir:" in workflow
 
 

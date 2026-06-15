@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 - 2026-06-15
 
 - Generate `CODEX_REVIEW.md` by default using `codex-maintainer-kit` v0.3.0.
 - Add GitHub Actions job summaries with audit score, review risk, artifact paths, and human review guidance.
