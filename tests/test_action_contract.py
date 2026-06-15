@@ -50,6 +50,9 @@ def test_readme_documents_public_usage() -> None:
     assert "CODEX_REVIEW.md" in readme
     assert "comment-pr" in readme
     assert "pull-requests: write" in readme
+    assert "Choosing `kit-ref`" in readme
+    assert "kit-ref: v0.3.0" in readme
+    assert "Use `main` only when testing" in readme
     assert "codex-maintainer-kit" in readme
 
 

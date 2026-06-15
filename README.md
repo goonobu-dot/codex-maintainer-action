@@ -79,6 +79,19 @@ jobs:
 
 The comment is intentionally short. It points to generated artifacts and repeats the human review rule instead of pasting full reports into the PR.
 
+## Choosing `kit-ref`
+
+`kit-ref` controls which `codex-maintainer-kit` release the action installs.
+
+Use a pinned release tag for normal repositories:
+
+```yaml
+with:
+  kit-ref: v0.3.0
+```
+
+Pinned tags make workflow output stable and easier to review. Use a full commit SHA when you need maximum reproducibility for regulated or high-trust maintenance workflows. Use `main` only when testing the newest CLI behavior before a release; avoid `main` in production workflows because generated output can change without warning.
+
 ## Relationship To Codex Maintainer Kit
 
 `codex-maintainer-kit` is the CLI. This repository is the GitHub-native runner.
