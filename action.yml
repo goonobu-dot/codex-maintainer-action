@@ -20,7 +20,7 @@ inputs:
     required: false
     default: v0.3.0
   comment-pr:
-    description: Post a short pull request comment with generated artifact paths and maintainer review guidance. Requires pull-requests: write.
+    description: "Post a short pull request comment with generated artifact paths and maintainer review guidance. Requires pull-requests: write."
     required: false
     default: "false"
   upload-artifact:

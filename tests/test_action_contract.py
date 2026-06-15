@@ -37,6 +37,7 @@ def test_action_runs_codex_maintainer_kit_commands() -> None:
     assert "GITHUB_STEP_SUMMARY" in action
     assert "gh pr comment" in action
     assert "github.event.pull_request.number" in action
+    assert 'description: "Post a short pull request comment' in action
 
 
 def test_readme_documents_public_usage() -> None:
