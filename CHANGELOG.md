@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 - 2026-06-15
 
 - Generate `OSS_MAINTENANCE_AUDIT.md` by default using `codex-maintainer-kit` v0.2.0.
 - Add `maintenance-audit` output and smoke-test coverage.

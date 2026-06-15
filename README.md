@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: goonobu-dot/codex-maintainer-action@v0.1.0
+      - uses: goonobu-dot/codex-maintainer-action@v0.1.1
         with:
           output-dir: codex-maintenance
 ```
