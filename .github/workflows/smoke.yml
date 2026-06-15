@@ -1,0 +1,19 @@
+name: action-smoke
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          output-dir: codex-maintenance
+          upload-artifact: "false"
+      - run: test -f codex-maintenance/MAINTAINER_BRIEF.md
+      - run: test -f codex-maintenance/CODEX_TASKS.md
+      - run: test -f codex-maintenance/codex-tasks.json

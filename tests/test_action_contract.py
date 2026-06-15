@@ -1,0 +1,55 @@
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_action_metadata_declares_expected_inputs_and_outputs() -> None:
+    action = (ROOT / "action.yml").read_text(encoding="utf-8")
+
+    for expected in [
+        "repo-path:",
+        "output-dir:",
+        "kit-ref:",
+        "upload-artifact:",
+        "artifact-name:",
+        "maintainer-brief:",
+        "codex-tasks:",
+        "codex-tasks-json:",
+    ]:
+        assert expected in action
+
+
+def test_action_runs_codex_maintainer_kit_commands() -> None:
+    action = (ROOT / "action.yml").read_text(encoding="utf-8")
+
+    assert "pip install" in action
+    assert "goonobu-dot/codex-maintainer-kit.git" in action
+    assert "codex-maintainer-kit brief" in action
+    assert "codex-maintainer-kit tasks" in action
+    assert "--format json" in action
+
+
+def test_readme_documents_public_usage() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+    assert "goonobu-dot/codex-maintainer-action@v0.1.0" in readme
+    assert "MAINTAINER_BRIEF.md" in readme
+    assert "CODEX_TASKS.md" in readme
+    assert "codex-maintainer-kit" in readme
+
+
+def test_example_workflow_uses_action() -> None:
+    workflow = (ROOT / "examples" / "workflow.yml").read_text(encoding="utf-8")
+
+    assert "uses: goonobu-dot/codex-maintainer-action@v0.1.0" in workflow
+    assert "output-dir:" in workflow
+
+
+def test_smoke_workflow_runs_local_action() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "smoke.yml").read_text(encoding="utf-8")
+
+    assert "uses: ./" in workflow
+    assert "test -f codex-maintenance/MAINTAINER_BRIEF.md" in workflow
+    assert "test -f codex-maintenance/CODEX_TASKS.md" in workflow
+    assert "test -f codex-maintenance/codex-tasks.json" in workflow

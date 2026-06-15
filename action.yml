@@ -1,0 +1,81 @@
+name: Codex Maintainer Action
+description: Generate Codex-ready OSS maintenance briefs, task queues, and JSON artifacts.
+author: goonobu-dot
+
+branding:
+  icon: clipboard
+  color: blue
+
+inputs:
+  repo-path:
+    description: Repository path to inspect.
+    required: false
+    default: "."
+  output-dir:
+    description: Directory where generated maintenance files are written.
+    required: false
+    default: codex-maintenance
+  kit-ref:
+    description: Branch, tag, or commit of goonobu-dot/codex-maintainer-kit to install.
+    required: false
+    default: v0.1.1
+  upload-artifact:
+    description: Upload generated maintenance files as a workflow artifact.
+    required: false
+    default: "true"
+  artifact-name:
+    description: Artifact name for generated maintenance files.
+    required: false
+    default: codex-maintenance
+
+outputs:
+  output-dir:
+    description: Directory containing generated maintenance files.
+    value: ${{ steps.generate.outputs.output-dir }}
+  maintainer-brief:
+    description: Path to generated MAINTAINER_BRIEF.md.
+    value: ${{ steps.generate.outputs.maintainer-brief }}
+  codex-tasks:
+    description: Path to generated CODEX_TASKS.md.
+    value: ${{ steps.generate.outputs.codex-tasks }}
+  codex-tasks-json:
+    description: Path to generated codex-tasks.json.
+    value: ${{ steps.generate.outputs.codex-tasks-json }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install codex-maintainer-kit
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install "git+https://github.com/goonobu-dot/codex-maintainer-kit.git@${{ inputs.kit-ref }}"
+
+    - name: Generate maintenance files
+      id: generate
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        output_dir="${{ inputs.output-dir }}"
+        repo_path="${{ inputs.repo-path }}"
+
+        mkdir -p "$output_dir"
+
+        codex-maintainer-kit brief "$repo_path" --output "$output_dir/MAINTAINER_BRIEF.md"
+        codex-maintainer-kit tasks "$repo_path" --output "$output_dir/CODEX_TASKS.md"
+        codex-maintainer-kit tasks "$repo_path" --format json --output "$output_dir/codex-tasks.json"
+
+        {
+          echo "output-dir=$output_dir"
+          echo "maintainer-brief=$output_dir/MAINTAINER_BRIEF.md"
+          echo "codex-tasks=$output_dir/CODEX_TASKS.md"
+          echo "codex-tasks-json=$output_dir/codex-tasks.json"
+        } >> "$GITHUB_OUTPUT"
+
+    - name: Upload maintenance artifact
+      if: ${{ inputs.upload-artifact == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: ${{ inputs.output-dir }}

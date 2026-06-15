@@ -1,0 +1,16 @@
+name: Codex maintenance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+
+jobs:
+  codex-maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: goonobu-dot/codex-maintainer-action@v0.1.0
+        with:
+          output-dir: codex-maintenance
+          upload-artifact: "true"
