@@ -14,6 +14,7 @@ jobs:
         with:
           output-dir: codex-maintenance
           upload-artifact: "false"
+      - run: test -f codex-maintenance/OSS_MAINTENANCE_AUDIT.md
       - run: test -f codex-maintenance/MAINTAINER_BRIEF.md
       - run: test -f codex-maintenance/CODEX_TASKS.md
       - run: test -f codex-maintenance/codex-tasks.json

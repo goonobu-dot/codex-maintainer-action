@@ -4,6 +4,7 @@ GitHub Action wrapper for [`codex-maintainer-kit`](https://github.com/goonobu-do
 
 It runs the CLI in GitHub Actions and generates Codex-ready maintenance artifacts for open source repositories:
 
+- `OSS_MAINTENANCE_AUDIT.md`
 - `MAINTAINER_BRIEF.md`
 - `CODEX_TASKS.md`
 - `codex-tasks.json`
@@ -36,7 +37,7 @@ jobs:
 | --- | --- | --- |
 | `repo-path` | `.` | Repository path to inspect. |
 | `output-dir` | `codex-maintenance` | Directory where generated files are written. |
-| `kit-ref` | `v0.1.1` | Branch, tag, or commit of `codex-maintainer-kit` to install. |
+| `kit-ref` | `v0.2.0` | Branch, tag, or commit of `codex-maintainer-kit` to install. |
 | `upload-artifact` | `true` | Upload generated files as an artifact. |
 | `artifact-name` | `codex-maintenance` | Artifact name. |
 
@@ -45,6 +46,7 @@ jobs:
 | Output | Description |
 | --- | --- |
 | `output-dir` | Directory containing generated maintenance files. |
+| `maintenance-audit` | Path to `OSS_MAINTENANCE_AUDIT.md`. |
 | `maintainer-brief` | Path to `MAINTAINER_BRIEF.md`. |
 | `codex-tasks` | Path to `CODEX_TASKS.md`. |
 | `codex-tasks-json` | Path to `codex-tasks.json`. |
