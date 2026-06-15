@@ -1,5 +1,5 @@
 name: Codex Maintainer Action
-description: Generate Codex-ready OSS maintenance briefs, task queues, and JSON artifacts.
+description: Generate Codex-ready OSS maintenance audits, briefs, task queues, and JSON artifacts.
 author: goonobu-dot
 
 branding:
@@ -18,7 +18,7 @@ inputs:
   kit-ref:
     description: Branch, tag, or commit of goonobu-dot/codex-maintainer-kit to install.
     required: false
-    default: v0.1.1
+    default: v0.2.0
   upload-artifact:
     description: Upload generated maintenance files as a workflow artifact.
     required: false
@@ -32,6 +32,9 @@ outputs:
   output-dir:
     description: Directory containing generated maintenance files.
     value: ${{ steps.generate.outputs.output-dir }}
+  maintenance-audit:
+    description: Path to generated OSS_MAINTENANCE_AUDIT.md.
+    value: ${{ steps.generate.outputs.maintenance-audit }}
   maintainer-brief:
     description: Path to generated MAINTAINER_BRIEF.md.
     value: ${{ steps.generate.outputs.maintainer-brief }}
@@ -62,12 +65,14 @@ runs:
 
         mkdir -p "$output_dir"
 
+        codex-maintainer-kit audit "$repo_path" --output "$output_dir/OSS_MAINTENANCE_AUDIT.md"
         codex-maintainer-kit brief "$repo_path" --output "$output_dir/MAINTAINER_BRIEF.md"
         codex-maintainer-kit tasks "$repo_path" --output "$output_dir/CODEX_TASKS.md"
         codex-maintainer-kit tasks "$repo_path" --format json --output "$output_dir/codex-tasks.json"
 
         {
           echo "output-dir=$output_dir"
+          echo "maintenance-audit=$output_dir/OSS_MAINTENANCE_AUDIT.md"
           echo "maintainer-brief=$output_dir/MAINTAINER_BRIEF.md"
           echo "codex-tasks=$output_dir/CODEX_TASKS.md"
           echo "codex-tasks-json=$output_dir/codex-tasks.json"
