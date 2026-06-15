@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Generate `CODEX_REVIEW.md` by default using `codex-maintainer-kit` v0.3.0.
+- Add GitHub Actions job summaries with audit score, review risk, artifact paths, and human review guidance.
+- Add optional `comment-pr` mode for short pull request comments when workflows grant `pull-requests: write`.
+
 ## 0.1.1 - 2026-06-15
 
 - Generate `OSS_MAINTENANCE_AUDIT.md` by default using `codex-maintainer-kit` v0.2.0.
