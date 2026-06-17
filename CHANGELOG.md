@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Updated CI to use minimal read permissions and Node 24-compatible GitHub Actions.
+- Added Dependabot coverage for GitHub Actions updates.
+
 ## 0.2.0 - 2026-06-15
 
 - Generate `CODEX_REVIEW.md` by default using `codex-maintainer-kit` v0.3.0.

@@ -67,8 +67,27 @@ def test_smoke_workflow_runs_local_action() -> None:
     workflow = (ROOT / ".github" / "workflows" / "smoke.yml").read_text(encoding="utf-8")
 
     assert "uses: ./" in workflow
+    assert "permissions:" in workflow
+    assert "contents: read" in workflow
+    assert "actions/checkout@v5" in workflow
     assert "test -f codex-maintenance/OSS_MAINTENANCE_AUDIT.md" in workflow
     assert "test -f codex-maintenance/MAINTAINER_BRIEF.md" in workflow
     assert "test -f codex-maintenance/CODEX_TASKS.md" in workflow
     assert "test -f codex-maintenance/codex-tasks.json" in workflow
     assert "test -f codex-maintenance/CODEX_REVIEW.md" in workflow
+
+
+def test_contract_workflow_uses_minimal_permissions_and_node24_actions() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "tests.yml").read_text(encoding="utf-8")
+
+    assert "permissions:" in workflow
+    assert "contents: read" in workflow
+    assert "actions/checkout@v5" in workflow
+    assert "actions/setup-python@v6" in workflow
+
+
+def test_dependabot_covers_github_actions() -> None:
+    dependabot = (ROOT / ".github" / "dependabot.yml").read_text(encoding="utf-8")
+
+    assert 'package-ecosystem: "github-actions"' in dependabot
+    assert 'interval: "monthly"' in dependabot
