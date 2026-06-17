@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Updated CI to use minimal read permissions and Node 24-compatible GitHub Actions.
-- Added Dependabot coverage for GitHub Actions updates.
+- Added Dependabot coverage for non-major GitHub Actions updates.
 
 ## 0.2.0 - 2026-06-15
 

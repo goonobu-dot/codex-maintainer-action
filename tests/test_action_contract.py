@@ -91,3 +91,4 @@ def test_dependabot_covers_github_actions() -> None:
 
     assert 'package-ecosystem: "github-actions"' in dependabot
     assert 'interval: "monthly"' in dependabot
+    assert "version-update:semver-major" in dependabot
