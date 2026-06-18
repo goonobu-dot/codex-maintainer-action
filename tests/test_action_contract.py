@@ -99,6 +99,10 @@ def test_readme_links_beginner_guides() -> None:
 
     assert "docs/BEGINNER_GUIDE.md" in readme
     assert "docs/BEGINNER_GUIDE.ja.md" in readme
+    assert "docs/START_HERE.md" in readme
+    assert "docs/START_HERE.ja.md" in readme
+    assert "docs/USE_CASES.md" in readme
+    assert "docs/USE_CASES.ja.md" in readme
 
 
 def test_beginner_guides_explain_action_in_plain_language() -> None:
@@ -109,3 +113,19 @@ def test_beginner_guides_explain_action_in_plain_language() -> None:
     assert "GitHub Actions" in english
     assert "Codex Maintainer Action やさしい解説" in japanese
     assert "中学生でも分かる" in japanese
+
+
+def test_start_here_and_use_cases_help_first_time_users() -> None:
+    english_start = (ROOT / "docs" / "START_HERE.md").read_text(encoding="utf-8")
+    japanese_start = (ROOT / "docs" / "START_HERE.ja.md").read_text(encoding="utf-8")
+    english_cases = (ROOT / "docs" / "USE_CASES.md").read_text(encoding="utf-8")
+    japanese_cases = (ROOT / "docs" / "USE_CASES.ja.md").read_text(encoding="utf-8")
+
+    assert "Start Here" in english_start
+    assert "First 3 minutes" in english_start
+    assert "まずここから" in japanese_start
+    assert "最初の3分" in japanese_start
+    assert "Use Cases" in english_cases
+    assert "scheduled maintenance review" in english_cases
+    assert "ユースケース" in japanese_cases
+    assert "定期メンテナンス確認" in japanese_cases
