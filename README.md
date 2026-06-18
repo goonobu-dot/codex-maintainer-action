@@ -12,6 +12,13 @@ It runs the CLI in GitHub Actions and generates Codex-ready maintenance artifact
 
 The action also writes a GitHub Actions job summary with the audit score, review risk, and artifact paths. The intent is human-reviewed OSS maintenance. The action surfaces work, drafts task queues, and stores artifacts. It does not auto-merge, auto-release, or grant Codex write access.
 
+## Beginner-Friendly Guides
+
+New to this project? Start with a plain-language explanation:
+
+- [English beginner guide](docs/BEGINNER_GUIDE.md)
+- [日本語のやさしい解説](docs/BEGINNER_GUIDE.ja.md)
+
 ## Usage
 
 ```yaml
